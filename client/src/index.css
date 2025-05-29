@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import "tailwindcss";
+
+
+
+@theme{
+  --font-Poppins: "Poppins", sans-serif;
+  --font-Exo2: "Exo 2", sans-serif;
+  --font-Outfit: "Outfit", sans-serif;
+}
+
+.hero-container {
+  background-image: url("../src/assets/BH-HeroImg.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 680px;
+}
+
+.color {
+  background-color: #FFFFFF;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .hero-container {
+    height: 400px; /* Reduced height for mobile screens */
+  }
+}

@@ -1,9 +1,7 @@
 import express from "express";
 import { connect } from "./config/db.js";
 import dotenv from "dotenv";
-
 import authRoute from "./routes/authRoute.js";
-
 import cors from "cors";
 
 const app = express();
@@ -15,9 +13,7 @@ dotenv.config();
 
 app.use(express.json());
 // api routes
-
 app.use("/api/auth", authRoute);
-
 
 app.get("/", (req, res) => {
   res.status(200).json({ success: true, message: "server is live" });

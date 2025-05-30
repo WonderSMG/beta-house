@@ -55,7 +55,7 @@ const Navbar = () => {
               className="cursor-pointer hover:text-[#3D9970] px-6 py-2 border-[2px] border-[#F5F5F5] rounded-md text-[#F5F5F5]"
               onClick={() => navigate("/signup")} // Navigate to signup
             >
-              Sign in
+              Sign Up
             </li>
             <li
               className="cursor-pointer hover:text-black bg-[#3D9970] border-[#3D9970] border-[2px] px-8 py-2 rounded-md text-white"
@@ -111,7 +111,7 @@ const Navbar = () => {
               className="cursor-pointer hover:text-[#3D9970] px-4 py-2 border-[2px] border-[#F5F5F5] rounded-md"
               onClick={() => navigate("/signup")} // Navigate to signup
             >
-              Sign in
+              Sign Up
             </li>
             <li
               className="cursor-pointer hover:text-white bg-[#3D9970] px-4 py-2 rounded-md"

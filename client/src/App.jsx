@@ -3,10 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./layouts/Navbar";
 import Hero from "./features/Hero";
 import Properties from "./pages/Properties";
+import { AuthProvider } from "./Context/AuthContext";
 import Footer from "./layouts/Footer";
 import PopularProperties from "./components/PopularProperties";
 import SignUp from "./auth/SignUp";
-import Login from "./auth/Login";
+import SignIn from "./auth/SignIn";
+
 
 function App() {
   const [searchCriteria, setSearchCriteria] = useState(null);
@@ -35,7 +37,7 @@ function App() {
           <Route path="/properties" element={<Properties searchCriteria={searchCriteria} />} />
           <Route path="/popular-properties" element={ <PopularProperties/> } />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={ <SignIn/> } />
         </Routes>
         <Footer />
       </div>

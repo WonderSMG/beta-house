@@ -11,12 +11,17 @@ import SignUpImage from "../assets/signup-image.svg";
 import GoogleIcon from "../assets/googleIcon.svg";
 import BetaHouseLogo from "../assets/BH.svg";
 import LoadingRing from "../utils/Loader";
+import { useAuth } from "../Context/AuthContext";
+ 
+
 
 const baseUrl = import.meta.env.VITE_API_URL;
 const SignUp = () => {
   const [isReveal, setIsReveal] = useState(false);
   const [isReveal2, setIsReveal2] = useState(false);
   const [isError, setIsError] = useState(null);
+  const { login } = useAuth(); // Use login to update user state
+
  const navigate = useNavigate(); // Initialize useNavigate for redirection
   function togglePwd() {
     setIsReveal((prev) => !prev);
@@ -43,18 +48,14 @@ const SignUp = () => {
         body: JSON.stringify(data),
       });
       const res = await req.json();
-      if (!res.success) {
-        // Show error message if sign-up fails
-        setIsError(res.errMsg);
-        toast.error(res.errMsg); // Display error using toast
-        setTimeout(() => setIsError(null), 3000);
-        return; // Stop further execution if sign-up fails
+      if (req.ok) {
+        toast.success("Signed up successfully!");
+        await login(res.token, res.user); // Automatically log in after sign-up
+        navigate("/"); // Redirect to home page
+        window.location.reload(); // Refresh the page
+      } else {
+        toast.error(res.errMsg || "Sign-up failed");
       }
-
-      // If sign-up is successful
-      toast.success(res.message);
-      reset(); // Reset the form
-      navigate("/signin"); // Redirect to the sign-in page
     } catch (error) {
       // Handle unexpected errors
       toast.error("An unexpected error occurred. Please try again.");
@@ -64,6 +65,7 @@ const SignUp = () => {
    const btnText = isSubmitting ? <LoadingRing /> : "Sign Up";
   return (
     <div className="min-h-screen bg-white flex flex-col lg:flex-row lg:gap-10 items-center justify-center lg:pt-[50px] pt-28 pb-48 lg:pb-3 px-6 lg:px-[130px]">
+      
       {/* Sign Up Form */}
       <div className="w-full lg:w-1/2 bg-white h-[846px]">
         <h1 className="text-[25px] font-bold text-black mb-4">
@@ -71,7 +73,7 @@ const SignUp = () => {
           await.
         </h1>
         <p className="text-lg text-gray-600 mb-6">
-          Let’s get started by filling out the information below.
+          Let's get started by filling out the information below.
         </p>
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
           {/* First Name and Last Name */}

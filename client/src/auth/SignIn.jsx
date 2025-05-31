@@ -40,25 +40,24 @@ function togglePwd() {
         },
         body: JSON.stringify(data),
       });
-
+  
       const res = await req.json();
-       if (!res.success) {
-         // toast.error(res.errMsg);
-
-         setIsError(res.errMsg);
-         setTimeout(() => setIsError(null), 3000);
-       }
-  if(res.success){
-        toast.success(res.message)
-        localStorage.setItem("customerToken",res.user.token)
-        login(res.user.token, res.user);
-     
+      if (!res.success) {
+        setIsError(res.errMsg); // Display error message
+        setTimeout(() => setIsError(null), 3000); // Clear error after 3 seconds
+      }
+  
+      if (res.success) {
+        toast.success("Signed in successfully!"); // Show success alert
+        localStorage.setItem("customerToken", res.user.token); // Store token in localStorage
+        login(res.user.token, res.user); // Update user state with token and user data
         navigate("/"); // Redirect to the home page
+        window.location.reload(); // Refresh the page
       } else {
-        toast.error(result.message);
+        toast.error(res.message); // Show error alert
       }
     } catch (error) {
-      toast.error("Sign In Failed!");
+      toast.error("Sign In Failed!"); // Show generic error alert
     }
   };
    const btnText = isSubmitting ? <LoadingRing /> : "Sign In";
@@ -110,7 +109,7 @@ function togglePwd() {
             </div>
           )}
           {/* Forgot Password */}
-          <div className="text-right">
+          <div className="text-center">
             <Link
               to="/forgot-password"
               className="text-red-500 text-sm font-medium hover:underline"

@@ -117,50 +117,54 @@ const Navbar = () => {
         </div>
 
         {/* Mobile and Tablet Menu Buttons */}
-        <div className="flex lg:hidden items-center space-x-4">
-          {user ? (
-            // Display user's firstName and arrowDown button when logged in
-            <div className="relative flex items-center space-x-2">
-              <span
-                className="text-[#F5F5F5] text-sm font-medium cursor-pointer"
-                onClick={() => setIsAuthOpen((prev) => !prev)} // Toggle dropdown visibility
-              >
-                {user.firstName}
-              </span>
-              <img
-                src={arrowDown}
-                alt="Dropdown Arrow"
-                className="w-4 h-4 cursor-pointer"
-                onClick={() => setIsAuthOpen((prev) => !prev)} // Toggle dropdown visibility
-              />
-              {isAuthOpen && (
-                <div className="absolute top-10 right-0 bg-white shadow-md rounded-md py-2 w-24">
-                  <ul className="text-sm text-black">
-                    <li
-                      className="cursor-pointer px-5 py-2 hover:text-[#3D9970]"
-                      onClick={() => {
-                        logout(); // Log out user
-                        navigate("/"); // Redirect to home page
-                      }}
-                    >
-                      Log Out
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </div>
-          ) : (
-            // Display authIcon when not logged in
-            <>
-              <button onClick={() => setIsAuthOpen(!isAuthOpen)}>
-                <img src={authIcon} alt="Auth Icon" className="w-8 h-8" />
-              </button>
-              <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                <img src={mobileMenu} alt="Mobile Menu" className="w-8 h-8" />
-              </button>
-            </>
-          )}
+<div className="flex lg:hidden items-center space-x-4">
+  {user ? (
+    // Display user's firstName and arrowDown button when logged in
+    <div className="relative flex items-center space-x-2">
+      <span
+        className="text-[#F5F5F5] text-sm font-medium cursor-pointer"
+        onClick={() => setIsAuthOpen((prev) => !prev)} // Toggle dropdown visibility
+      >
+        {user.firstName}
+      </span>
+      <img
+        src={arrowDown}
+        alt="Dropdown Arrow"
+        className="w-4 h-4 cursor-pointer"
+        onClick={() => setIsAuthOpen((prev) => !prev)} // Toggle dropdown visibility
+      />
+      {isAuthOpen && (
+        <div className="absolute top-10 right-0 bg-white shadow-md rounded-md py-2 w-24">
+          <ul className="text-sm text-black">
+            <li
+              className="cursor-pointer px-5 py-2 hover:text-[#3D9970]"
+              onClick={() => {
+                logout(); // Log out user
+                navigate("/"); // Redirect to home page
+              }}
+            >
+              Log Out
+            </li>
+          </ul>
         </div>
+      )}
+      {/* Mobile Menu Button */}
+      <button onClick={() => setIsMenuOpen((prev) => !prev)}>
+        <img src={mobileMenu} alt="Mobile Menu" className="w-8 h-8" />
+      </button>
+    </div>
+  ) : (
+    // Display authIcon when not logged in
+    <>
+      <button onClick={() => setIsAuthOpen(!isAuthOpen)}>
+        <img src={authIcon} alt="Auth Icon" className="w-8 h-8" />
+      </button>
+      <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <img src={mobileMenu} alt="Mobile Menu" className="w-8 h-8" />
+      </button>
+    </>
+  )}
+</div>
       </header>
 
       {/* Mobile and Tablet Menu Dropdown */}

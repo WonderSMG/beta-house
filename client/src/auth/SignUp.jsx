@@ -176,7 +176,7 @@ const SignUp = () => {
             disabled={isSubmitting}
             text={btnText}
             className={`w-full h-[40px] font-[500] text-[20px] ${
-              isSubmitting ? "bg-dark" : "bg-[#3D9970] hover:bg-[#2E7A5C] transition-all duration-300 text-white"
+              isSubmitting ? "bg-amber-50" : "bg-[#3D9970] hover:bg-[#2E7A5C] transition-all duration-300 text-white"
             } `}
           />
         </form>

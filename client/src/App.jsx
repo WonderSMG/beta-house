@@ -8,6 +8,7 @@ import Footer from "./layouts/Footer";
 import PopularProperties from "./components/PopularProperties";
 import SignUp from "./auth/SignUp";
 import SignIn from "./auth/SignIn";
+import ScrollToTop from "./utils/ScrollToTop";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <Router>
+        <ScrollToTop />
       <div className="hero-container">
         <Navbar />
         <Routes>

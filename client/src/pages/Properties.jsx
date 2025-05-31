@@ -12,6 +12,10 @@ const Properties = ({ searchCriteria }) => {
   const propertiesPerPage = 9; // Number of properties to display per page
   const [filteredProperties, setFilteredProperties] = useState(propertiesData);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);  // Scroll to the top of the page
+  }, [currentPage]); 
+
   // Filter properties based on search criteria
   useEffect(() => {
     if (searchCriteria) {
